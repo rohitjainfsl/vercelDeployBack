@@ -21,9 +21,17 @@ const userSchema = new mongoose.Schema({
 
 const User = mongoose.model("User", userSchema);
 
-app.options('*', cors());
+const issue2options = {
+  origin: true,
+  methods: ["POST"],
+  credentials: true,
+  maxAge: 3600
+};
 
-app.post("/register", cors(), async (req, res) => {
+
+app.options('/register', cors(issue2options));
+
+app.post("/register", cors(issue2options), async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = new User({ email, password });
