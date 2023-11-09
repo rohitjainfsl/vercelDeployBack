@@ -4,15 +4,15 @@ import mongoose from "mongoose";
 import { config } from "dotenv";
 
 const app = express();
-app.options('*', cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 mongoose
-  .connect(process.env.MONGODB_URI)
-  .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.log(err));
+.connect(process.env.MONGODB_URI)
+.then(() => console.log("MongoDB connected"))
+.catch((err) => console.log(err));
+
 
 const userSchema = new mongoose.Schema({
   email: String,
@@ -20,6 +20,8 @@ const userSchema = new mongoose.Schema({
 });
 
 const User = mongoose.model("User", userSchema);
+
+app.options('*', cors());
 
 app.post("/register", async (req, res) => {
   try {
