@@ -23,7 +23,7 @@ const User = mongoose.model("User", userSchema);
 
 app.options('*', cors());
 
-app.post("/register", async (req, res) => {
+app.post("/register", cors(), async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = new User({ email, password });
@@ -35,7 +35,7 @@ app.post("/register", async (req, res) => {
   }
 });
 
-app.post("/login", async (req, res) => {
+app.post("/login", cors(), async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email, password });
