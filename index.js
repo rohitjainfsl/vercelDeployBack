@@ -4,7 +4,7 @@ import mongoose from "mongoose";
 import { config } from "dotenv";
 
 const app = express();
-app.use(cors({origin: "https://vercel-deploy-front-delta.vercel.app/"}));
+app.use(cors({origin: "https://vercel-deploy-front-delta.vercel.app"}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
