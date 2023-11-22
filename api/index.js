@@ -3,7 +3,6 @@ import express from "express";
 import mongoose from "mongoose";
 import { config } from "dotenv";
 
-
 const app = express();
 
 app.use(express.json());
@@ -31,9 +30,9 @@ const issue2options = {
 };
 
 
-app.options('https://vercel-deploy-back-neon.vercel.app/register', cors(issue2options));
+app.options('/register', cors(issue2options));
 
-app.post("https://vercel-deploy-back-neon.vercel.app/register", cors(issue2options), async (req, res) => {
+app.post("/register", cors(issue2options), async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = new User({ email, password });
@@ -45,7 +44,7 @@ app.post("https://vercel-deploy-back-neon.vercel.app/register", cors(issue2optio
   }
 });
 
-app.post("https://vercel-deploy-back-neon.vercel.app/login", cors(), async (req, res) => {
+app.post("/login", cors(), async (req, res) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email, password });
