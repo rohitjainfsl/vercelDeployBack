@@ -6,6 +6,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors({origin: 'https://vercel-deploy-front.onrender.com'}));
 
 mongoose
   .connect(
