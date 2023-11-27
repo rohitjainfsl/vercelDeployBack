@@ -1,19 +1,18 @@
 import cors from "cors";
 import express from "express";
 import mongoose from "mongoose";
-import { config } from "dotenv";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const url = config().parsed.MONGODB_URI;
 mongoose
-.connect(url)
-.then(() => console.log("MongoDB connected"))
-.catch((err) => console.log(err));
-
+  .connect(
+    "mongodb+srv://mongodbuser:zFMYcFgVV4SS7jA6@cluster0.4ont6qs.mongodb.net/vercelDeploy?retryWrites=true&w=majority"
+  )
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.log(err));
 
 const userSchema = new mongoose.Schema({
   email: String,
@@ -26,11 +25,10 @@ const issue2options = {
   origin: true,
   methods: ["POST"],
   credentials: true,
-  maxAge: 3600
+  maxAge: 3600,
 };
 
-
-app.options('/register', cors(issue2options));
+app.options("/register", cors(issue2options));
 
 app.post("/register", cors(issue2options), async (req, res) => {
   try {
